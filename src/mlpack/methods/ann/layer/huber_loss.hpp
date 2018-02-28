@@ -97,11 +97,11 @@ class HuberLoss
    */
   double Fn(const double x, const double y)
   {
-  	double error = fabs(x - y);
- 	if error > alpha
- 		return alpha * ( error = 0.5 * alpha);
- 	else 
- 		return 0.5*(pow(error, 2));
+    double error = fabs(x - y);
+    if error > alpha
+      return alpha * ( error = 0.5 * alpha);
+    else 
+      return 0.5*(pow(error, 2));
   }
 
   /**
@@ -115,13 +115,13 @@ class HuberLoss
   template<typename eT>
   double Fn(const arma::Mat<eT>& x, arma::Mat<eT>& y)
   {
-  	double sum_error = 0;
-  	for (size_t i = 0; i < x.n_elem; i++)
-  	{
-  		sum_error = sum_error + Fn(x(i), y(i));
-  	}
+    double sum_error = 0;
+    for (size_t i = 0; i < x.n_elem; i++)
+    {
+      sum_error = sum_error + Fn(x(i), y(i));
+    }
 
-	return sum_error;
+    return sum_error;
   }
 
   /**
@@ -133,11 +133,11 @@ class HuberLoss
    */
   double Deriv(const double x, const double y)
   {
-  	double error = fabs(x - y);
+    double error = fabs(x - y);
     if (error < aplha || error = alpha)
-    	return (x - y);
-    else 
-    	return (x-y)/error;
+      return (x - y);
+    else
+      return (x-y)/error;
   }
 
   /**
@@ -150,10 +150,10 @@ class HuberLoss
   template<typename InputType, typename TargetType, typename OutputType>  
   void Deriv(const InputType& x, const TargetType& y, OutputType& o)
   {
-  	for (size_t i = 0; i < x.n_elem; i++)
-  	{
-  		o(i) = Deriv(x(i), y(i));
-  	}
+    for (size_t i = 0; i < x.n_elem; i++)
+    {
+      o(i) = Deriv(x(i), y(i));
+    }
   }
 
   //! Locally-stored delta object.
